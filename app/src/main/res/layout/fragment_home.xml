@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Home"
+        android:translationY="-20dp"
+        android:translationX="-120dp"
+        android:layout_gravity="center"
+        android:textColor="@color/tan"
+        android:textSize="26sp"/>
+
+    <RelativeLayout
+        android:layout_width="400sp"
+        android:layout_height="320sp"
+        android:layout_gravity="center"
+        android:translationY="159dp"
+        android:background="@drawable/rounded_square"
+        android:elevation="20dp"
+        android:padding="10dp">
+
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="400sp"
+        android:layout_height="90sp"
+        android:layout_gravity="center"
+        android:translationY="-100dp"
+        android:background="@drawable/rounded_rectangle"
+        android:elevation="20dp"
+        android:padding="10dp">
+    <android.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Items Added to Your List"
+        android:textColor="@color/tan"
+        android:textSize="26sp"
+        android:layout_gravity="center"
+        android:translationY="-160dp"
+        android:translationX="-40dp"/>
+
+    <RelativeLayout
+        android:layout_width="400sp"
+        android:layout_height="90sp"
+        android:layout_gravity="center"
+        android:translationY="-235dp"
+        android:background="@drawable/rounded_rectangle"
+        android:elevation="20dp"
+        android:padding="10dp">
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Items About To Expire"
+        android:textColor="@color/tan"
+        android:textSize="26sp"
+        android:layout_gravity="center"
+        android:translationY="-300dp"
+        android:translationX="-60dp"/>
+</FrameLayout>

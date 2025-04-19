@@ -6,7 +6,8 @@
     android:background="@color/blue"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- added all the styleings here for the home screen -->
+    <!-- text for the My home -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +17,7 @@
         android:layout_gravity="center"
         android:textColor="@color/tan"
         android:textSize="26sp"/>
-
+    <!-- the square for the my home -->
     <RelativeLayout
         android:layout_width="400sp"
         android:layout_height="320sp"
@@ -31,7 +32,7 @@
             android:layout_height="50dp" />
     </RelativeLayout>
 
-
+    <!-- the rectangle under list-->
     <RelativeLayout
         android:layout_width="400sp"
         android:layout_height="90sp"
@@ -44,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
     </RelativeLayout>
-
+    <!-- text for the list -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -55,7 +56,7 @@
         android:layout_gravity="center"
         android:translationY="-160dp"
         android:translationX="-40dp"/>
-
+    <!-- rectangle for the expire -->
     <RelativeLayout
         android:layout_width="400sp"
         android:layout_height="90sp"
@@ -68,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
     </RelativeLayout>
-
+    <!-- text for the expire -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"

@@ -16,23 +16,27 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login_screen);
 
-        // Handles applying padding to avoid overlap with system bars like status/nav bar
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        // Set splash screen layout
+        setContentView(R.layout.activity_splash_screen);
+
+        
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
+        // Apply padding to prevent system UI overlap
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_layout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Delays for 3 seconds before launching the MainActivity
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, LoginScreenActivity.class); // Create intent to move to MainActivity
-                startActivity(intent); // Start the main activity
-                finish(); // End the splash screen so user can't go back to it
-            }
-        }, 3000); // 3-second delay
+        // Delay before going to login screen
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(SplashScreenActivity.this, LoginScreenActivity.class);
+            startActivity(intent);
+            finish();
+        }, 3000); // 3 seconds
     }
 }

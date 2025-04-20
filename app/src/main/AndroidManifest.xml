@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShelfLife"
         tools:targetApi="31">
-
+        <activity
+            android:name=".RegisterNewAccountActivity"
+            android:exported="false" />
         <!-- Splash loads first -->
         <activity
             android:name=".SplashScreenActivity"
@@ -20,20 +22,16 @@
             android:theme="@style/Theme.ShelfLife">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Login comes after splash -->
+        </activity> <!-- Login comes after splash -->
         <activity
             android:name=".LoginScreenActivity"
-            android:exported="false" />
-
-        <!-- Main activity comes later -->
+            android:exported="false" /> <!-- Main activity comes later -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

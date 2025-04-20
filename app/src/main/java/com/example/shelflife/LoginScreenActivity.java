@@ -36,23 +36,21 @@ public class LoginScreenActivity extends AppCompatActivity {
         mRegisterButton = findViewById(R.id.registerButton);
         mForgotPasswordButton = findViewById(R.id.forgotPasswordButton);
 
-        // Login button test mode — always goes to MainActivity
+        // Login button → MainActivity
         mLoginButton.setOnClickListener(v -> {
             Toast.makeText(this, "Login clicked", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
 
-        // Register button test
+        // Register button → RegisterNewAccountActivity
         mRegisterButton.setOnClickListener(v -> {
-            Toast.makeText(this, "Register button clicked", Toast.LENGTH_SHORT).show();
-            // TODO: Add RegisterActivity navigation here later
+            startActivity(new Intent(this, RegisterNewAccountActivity.class));
         });
 
-        // Forgot password button test
+        // Forgot Password → Placeholder toast
         mForgotPasswordButton.setOnClickListener(v -> {
             Toast.makeText(this, "Forgot Password clicked", Toast.LENGTH_SHORT).show();
-            // TODO: Add ForgotPasswordActivity navigation here later
         });
     }
 }

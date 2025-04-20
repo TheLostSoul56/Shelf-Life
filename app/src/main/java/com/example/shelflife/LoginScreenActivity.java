@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class LoginScreenActivity extends AppCompatActivity {
 
     private EditText mEmailInput, mPasswordInput;
-    private Button mLoginButton, mRegisterButton;
+    private Button mLoginButton, mRegisterButton, mForgotPasswordButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,27 +29,30 @@ public class LoginScreenActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Link UI elements
         mEmailInput = findViewById(R.id.emailInput);
         mPasswordInput = findViewById(R.id.passwordInput);
         mLoginButton = findViewById(R.id.loginButton);
         mRegisterButton = findViewById(R.id.registerButton);
+        mForgotPasswordButton = findViewById(R.id.forgotPasswordButton);
 
+        // Login button test mode — always goes to MainActivity
         mLoginButton.setOnClickListener(v -> {
-            String email = mEmailInput.getText().toString().trim();
-            String password = mPasswordInput.getText().toString().trim();
-
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please enter both email and password.", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
-            }
+            Toast.makeText(this, "Login clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         });
 
+        // Register button test
         mRegisterButton.setOnClickListener(v -> {
-            Toast.makeText(this, "Redirect to registration page (coming soon)", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(this, RegisterActivity.class)); // Future use
+            Toast.makeText(this, "Register button clicked", Toast.LENGTH_SHORT).show();
+            // TODO: Add RegisterActivity navigation here later
+        });
+
+        // Forgot password button test
+        mForgotPasswordButton.setOnClickListener(v -> {
+            Toast.makeText(this, "Forgot Password clicked", Toast.LENGTH_SHORT).show();
+            // TODO: Add ForgotPasswordActivity navigation here later
         });
     }
 }

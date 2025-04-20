@@ -71,25 +71,25 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        androidx.appcompat.widget.SearchView searchView =
-                (androidx.appcompat.widget.SearchView) searchItem.getActionView();
+            MenuItem searchItem = menu.findItem(R.id.action_search);
+            androidx.appcompat.widget.SearchView searchView =
+                    (androidx.appcompat.widget.SearchView) searchItem.getActionView();
 
-        searchView.setQueryHint("Search My Shelf");
+            searchView.setQueryHint("Search My Shelf");
 
-        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
+            searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
 
-                return false;
-            }
+                    return false;
+                }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
+                @Override
+                public boolean onQueryTextChange(String newText) {
 
-                return false;
-            }
-        });
+                    return false;
+                }
+            });
 
         return true;
     }

@@ -20,7 +20,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         // Set splash screen layout
         setContentView(R.layout.activity_splash_screen);
 
-        
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/storeCard"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_square"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp"
+    android:elevation="4dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/header"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/storeName"
+            android:text="Store Name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/toggleIcon"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_arrow_down"
+            android:contentDescription="Toggle Dropdown"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/productsContainer"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingTop="8dp"/>
+</LinearLayout>

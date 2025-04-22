@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Toolbar toolbar = findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar2);
 
         //sets the start up to go to the home screen when the app is opened
         if (savedInstanceState == null) {
@@ -72,25 +71,27 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.search_menu, menu);
 
             MenuItem searchItem = menu.findItem(R.id.action_search);
-            androidx.appcompat.widget.SearchView searchView =
-                    (androidx.appcompat.widget.SearchView) searchItem.getActionView();
+            if (searchItem != null) {
+                androidx.appcompat.widget.SearchView searchView =
+                        (androidx.appcompat.widget.SearchView) searchItem.getActionView();
 
-            searchView.setQueryHint("Search My Shelf");
 
-            searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
+                searchView.setQueryHint("Search My Shelf");
 
-                    return false;
-                }
+                searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
 
-                @Override
-                public boolean onQueryTextChange(String newText) {
+                        return false;
+                    }
 
-                    return false;
-                }
-            });
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
 
+                        return false;
+                    }
+                });
+            }
         return true;
     }
 

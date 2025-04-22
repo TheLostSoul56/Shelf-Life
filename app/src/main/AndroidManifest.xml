@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ShelfLife"
         tools:targetApi="31">
         <activity
-            android:name=".RegisterNewAccountActivity"
+            android:name=".Registration"
             android:exported="false" />
         <!-- Splash loads first -->
         <activity
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity> <!-- Login comes after splash -->
         <activity
-            android:name=".LoginScreenActivity"
+            android:name=".Login"
             android:exported="false" /> <!-- Main activity comes later -->
         <activity
             android:name=".MainActivity"

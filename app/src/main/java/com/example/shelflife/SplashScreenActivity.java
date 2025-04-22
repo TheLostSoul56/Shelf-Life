@@ -34,7 +34,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         // Delay before going to login screen
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashScreenActivity.this, LoginScreenActivity.class);
+            Intent intent = new Intent(SplashScreenActivity.this, Login.class);
             startActivity(intent);
             finish();
         }, 3000); // 3 seconds

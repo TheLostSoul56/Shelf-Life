@@ -2,55 +2,75 @@ package com.example.shelflife;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    private EditText mEmailInput, mPasswordInput;
-    private Button mLoginButton, mRegisterButton, mForgotPasswordButton;
+    private TextInputEditText emailInput, passwordInput;
+    private Button loginButton;
+    private ProgressBar progressBar;
+    private TextView registerRedirect;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        auth = FirebaseAuth.getInstance();
 
-        // Link UI elements
-        mEmailInput = findViewById(R.id.emailInput);
-        mPasswordInput = findViewById(R.id.passwordInput);
-        mLoginButton = findViewById(R.id.loginButton);
-        mRegisterButton = findViewById(R.id.registerButton);
-        mForgotPasswordButton = findViewById(R.id.forgotPasswordButton);
+        emailInput = findViewById(R.id.email);
+        passwordInput = findViewById(R.id.password);
+        loginButton = findViewById(R.id.loginButton);
+        progressBar = findViewById(R.id.ProgressBar);
+        registerRedirect = findViewById(R.id.loginRegisterNow);
 
-        // Login button → MainActivity
-        mLoginButton.setOnClickListener(v -> {
-            Toast.makeText(this, "Login clicked", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivity.class));
+        registerRedirect.setOnClickListener(v -> {
+            startActivity(new Intent(Login.this, Registration.class));
             finish();
         });
 
-        // Register button → RegisterNewAccountActivity
-        mRegisterButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, Registration.class));
-        });
+        loginButton.setOnClickListener(v -> loginUser());
+    }
 
-        // Forgot Password → Placeholder toast
-        mForgotPasswordButton.setOnClickListener(v -> {
-            Toast.makeText(this, "Forgot Password clicked", Toast.LENGTH_SHORT).show();
+    private void loginUser() {
+        String email = emailInput.getText().toString().trim();
+        String password = passwordInput.getText().toString().trim();
+
+        if (TextUtils.isEmpty(email)) {
+            emailInput.setError("Email is required");
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            passwordInput.setError("Password is required");
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            progressBar.setVisibility(View.GONE);
+            if (task.isSuccessful()) {
+                FirebaseUser user = auth.getCurrentUser();
+                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+            }
         });
     }
 }

@@ -54,4 +54,10 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in_short">Sign In</string>
     <string name="action_sign_in">Sign In</string>
+    <string name="login">Login</string>
+    <string name="register">register</string>
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="phone">phone</string>
+    <string name="last_name">last_name</string>
 </resources>

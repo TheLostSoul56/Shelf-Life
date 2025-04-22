@@ -2,98 +2,115 @@ package com.example.shelflife;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Registration extends AppCompatActivity {
 
-    private EditText mEmailInput, mPasswordInput, mReenterPasswordInput,
-            mFirstNameInput, mLastNameInput, mPhoneNumberInput, mCityInput, mStateInput;
-    private CheckBox mTermsCheckbox;
-    private Button mRegisterSubmitButton;
-    private TextView mToggleTermsText, mTermsParagraph;
+    private static final String TAG = "Registration";
+
+    private TextInputEditText firstNameInput, lastNameInput, phoneInput, emailInput, passwordInput;
+    private Button registerButton;
+    private ProgressBar progressBar;
+    private TextView loginRedirect;
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_registration);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
-        // Link all UI components
-        mEmailInput = findViewById(R.id.emailInput);
-        mPasswordInput = findViewById(R.id.passwordInput);
-        mReenterPasswordInput = findViewById(R.id.reenterPasswordInput);
-        mFirstNameInput = findViewById(R.id.firstNameInput);
-        mLastNameInput = findViewById(R.id.lastNameInput);
-        mPhoneNumberInput = findViewById(R.id.phoneNumberInput);
-        mCityInput = findViewById(R.id.cityInput);
-        mStateInput = findViewById(R.id.stateInput);
-        mTermsCheckbox = findViewById(R.id.termsCheckbox);
-        mRegisterSubmitButton = findViewById(R.id.registerSubmitButton);
-        mToggleTermsText = findViewById(R.id.toggleTermsText);
-        mTermsParagraph = findViewById(R.id.termsParagraph);
+        firstNameInput = findViewById(R.id.register_fname);
+        lastNameInput = findViewById(R.id.register_lname);
+        phoneInput = findViewById(R.id.register_phone);
+        emailInput = findViewById(R.id.register_email);
+        passwordInput = findViewById(R.id.register_password);
+        registerButton = findViewById(R.id.registerButton);
+        progressBar = findViewById(R.id.ProgressBar);
+        loginRedirect = findViewById(R.id.loginNow);
 
-        // Toggle terms visibility
-        mToggleTermsText.setOnClickListener(v -> {
-            if (mTermsParagraph.getVisibility() == View.GONE) {
-                mTermsParagraph.setVisibility(View.VISIBLE);
-                mToggleTermsText.setText("Hide Terms and Conditions ▲");
-            } else {
-                mTermsParagraph.setVisibility(View.GONE);
-                mToggleTermsText.setText("Show Terms and Conditions ▼");
-            }
-        });
-
-        // Register button logic
-        mRegisterSubmitButton.setOnClickListener(v -> {
-            String email = mEmailInput.getText().toString().trim();
-            String password = mPasswordInput.getText().toString().trim();
-            String rePassword = mReenterPasswordInput.getText().toString().trim();
-            String firstName = mFirstNameInput.getText().toString().trim();
-            String lastName = mLastNameInput.getText().toString().trim();
-            String phone = mPhoneNumberInput.getText().toString().trim();
-            String city = mCityInput.getText().toString().trim();
-            String state = mStateInput.getText().toString().trim();
-
-            // Validate fields
-            if (email.isEmpty() || password.isEmpty() || rePassword.isEmpty()
-                    || firstName.isEmpty() || lastName.isEmpty()
-                    || phone.isEmpty() || city.isEmpty() || state.isEmpty()) {
-                Toast.makeText(this, "Please fill out all fields.", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if (!password.equals(rePassword)) {
-                Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if (!mTermsCheckbox.isChecked()) {
-                Toast.makeText(this, "You must agree to the terms and conditions.", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            // All good — go back to login screen
-            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
+        loginRedirect.setOnClickListener(v -> {
+            startActivity(new Intent(Registration.this, Login.class));
             finish();
+        });
+
+        registerButton.setOnClickListener(v -> registerUser());
+    }
+
+    private void registerUser() {
+        String fname = firstNameInput.getText().toString().trim();
+        String lname = lastNameInput.getText().toString().trim();
+        String phone = phoneInput.getText().toString().trim();
+        String email = emailInput.getText().toString().trim();
+        String password = passwordInput.getText().toString().trim();
+
+        if (TextUtils.isEmpty(fname)) {
+            firstNameInput.setError("First name is required");
+            return;
+        }
+        if (TextUtils.isEmpty(lname)) {
+            lastNameInput.setError("Last name is required");
+            return;
+        }
+        if (TextUtils.isEmpty(phone)) {
+            phoneInput.setError("Phone number is required");
+            return;
+        }
+        if (TextUtils.isEmpty(email)) {
+            emailInput.setError("Email is required");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            passwordInput.setError("Password is required");
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            progressBar.setVisibility(View.GONE);
+            if (task.isSuccessful()) {
+                FirebaseUser user = auth.getCurrentUser();
+                if (user != null) {
+                    String uid = user.getUid();
+
+                    Map<String, Object> userMap = new HashMap<>();
+                    userMap.put("Fname", fname);
+                    userMap.put("Lname", lname);
+                    userMap.put("phone", phone);
+                    userMap.put("email", email);
+
+                    db.collection("users").document(uid)
+                            .set(userMap)
+                            .addOnSuccessListener(aVoid -> Log.d(TAG, "User profile created"))
+                            .addOnFailureListener(e -> Log.e(TAG, "Failed to save user: ", e));
+                }
+
+                Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Registration.this, Login.class));
+                finish();
+            } else {
+                Toast.makeText(this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+            }
         });
     }
 }

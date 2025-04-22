@@ -1,180 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:padding="24dp">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+    <!-- Background Image -->
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/registerPrompt"
-            android:layout_width="wrap_content"
+    <!-- Registration Form -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="#AAFFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register a New ShelfLife Account"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
 
-        <!-- Email -->
-        <EditText
-            android:id="@+id/emailInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/registerPrompt"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="24dp" />
 
-        <!-- Password -->
-        <EditText
-            android:id="@+id/passwordInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/emailInput"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First Name"
+                android:layout_marginBottom="12dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Re-enter Password -->
-        <EditText
-            android:id="@+id/reenterPasswordInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Re-enter Password"
-            android:inputType="textPassword"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/passwordInput"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Name"
+                android:layout_marginBottom="12dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_lname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- First Name -->
-        <EditText
-            android:id="@+id/firstNameInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="First Name"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/reenterPasswordInput"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                android:layout_marginBottom="12dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Last Name -->
-        <EditText
-            android:id="@+id/lastNameInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Last Name"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/firstNameInput"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:layout_marginBottom="12dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Phone Number -->
-        <EditText
-            android:id="@+id/phoneNumberInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Phone Number"
-            android:inputType="phone"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/lastNameInput"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:layout_marginBottom="24dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- City -->
-        <EditText
-            android:id="@+id/cityInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="City"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/phoneNumberInput"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <ProgressBar
+                android:id="@+id/ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp" />
 
-        <!-- State -->
-        <EditText
-            android:id="@+id/stateInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="State"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/cityInput"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                android:background="#1565C0"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp" />
 
-        <!-- Privacy Paragraph -->
-        <TextView
-            android:id="@+id/privacyParagraph"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="At ShelfLife, we value your privacy. All personal data you provide — including your name, email, phone number, and location — is used solely for the purpose of enhancing your experience within the app. We do not sell or share your information with third parties. Your data is securely stored and protected against unauthorized access."
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/stateInput"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- Toggle for Terms -->
-        <TextView
-            android:id="@+id/toggleTermsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Show Terms and Conditions ▼"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toBottomOf="@id/privacyParagraph"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <!-- Terms Paragraph (Hidden by default) -->
-        <TextView
-            android:id="@+id/termsParagraph"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="By creating an account, you agree to use ShelfLife responsibly and in accordance with our guidelines. Any attempt to reverse-engineer, copy, hack, or misuse the ShelfLife platform or its underlying technology is strictly prohibited. Violations of these terms may result in account termination and potential legal action."
-            android:textSize="14sp"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/toggleTermsText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- Checkbox -->
-        <CheckBox
-            android:id="@+id/termsCheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="I have read and agree to the Privacy Policy and Terms of Service."
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/termsParagraph"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <!-- Register Button -->
-        <Button
-            android:id="@+id/registerSubmitButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register Now"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintTop_toBottomOf="@id/termsCheckbox"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/loginNow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textStyle="bold"
+                android:layout_gravity="center" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

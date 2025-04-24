@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "258606895628",
+    "project_id": "shelf-life-efff2",
+    "storage_bucket": "shelf-life-efff2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258606895628:android:af97fda5a74033055f1429",
+        "android_client_info": {
+          "package_name": "com.example.logintestapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG-rSLbSYDsZt5Lm-jpSqyZp_XMxOvvq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258606895628:android:dde88bdc339b56845f1429",
+        "android_client_info": {
+          "package_name": "com.example.shelflife"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG-rSLbSYDsZt5Lm-jpSqyZp_XMxOvvq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

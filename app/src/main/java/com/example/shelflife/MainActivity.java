@@ -1,5 +1,6 @@
 package com.example.shelflife;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             }else if (itemID == R.id.settings){
                 replaceFragment(new SettingsFragment());
             }
-
             return true;
         });
 
@@ -94,7 +94,16 @@ public class MainActivity extends AppCompatActivity {
             }
         return true;
     }
+    public void addUser(View v){
+        AddUserFragment newUser = new AddUserFragment();
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, newUser);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+    }
 
 
 

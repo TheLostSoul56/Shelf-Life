@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,21 +19,34 @@
         android:textColor="@color/tan"
         android:textSize="26sp"/>
     <!-- the square for the my home -->
+
+    <!-- the rectangle under list-->
     <RelativeLayout
         android:layout_width="400sp"
         android:layout_height="320sp"
         android:layout_gravity="center"
-        android:translationY="159dp"
         android:background="@drawable/rounded_square"
         android:elevation="20dp"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:translationY="159dp">
 
         <android.widget.Space
+            android:id="@+id/space"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="76dp"
+            android:layout_alignEnd="@+id/space"
+            android:layout_alignBottom="@+id/space"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="-26dp"
+            android:onClick="addUser"
+            android:src="@drawable/add_user" />
     </RelativeLayout>
 
-    <!-- the rectangle under list-->
     <RelativeLayout
         android:layout_width="400sp"
         android:layout_height="90sp"

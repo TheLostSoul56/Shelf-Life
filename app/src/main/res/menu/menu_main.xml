@@ -2,9 +2,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.shelflife.MainActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+    <!-- items for the nav bar -->
+    <item android:title="Home"
+        android:icon="@drawable/home_icon"
+        android:id="@+id/home_button"/>
+
+    <item android:title="My List"
+        android:icon="@drawable/list"
+        android:id="@+id/list"/>
+
+    <item android:title="My Shelf"
+        android:icon="@drawable/shelf"
+        android:id="@+id/shelf"/>
+
+    <item android:title="Expired"
+        android:icon="@drawable/expired"
+        android:id="@+id/expired"/>
+
+    <item android:title="Settings"
+        android:icon="@drawable/settings"
+        android:id="@+id/settings"/>
+
 </menu>

@@ -11,7 +11,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.shelflife.databinding.ActivityMainBinding;
+
 import android.view.View;
+
+import com.example.shelflife.R;
+import com.google.firebase.FirebaseApp;
+
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar2);
+
+
 
         //sets the start up to go to the home screen when the app is opened
         if (savedInstanceState == null) {
@@ -50,8 +57,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-     // here is the method to change the screen or fragment when the event handler is triggered
-    private void replaceFragment(Fragment fragment){
+
+
+
+
+
+    // here is the method to change the screen or fragment when the event handler is triggered
+    public void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
@@ -94,9 +106,19 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, newUser);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-
+        
+        //Fragment newFrag = new Fragment();
+        //replaceFragment(newFrag);
     }
+    public void goBack(View v)
+    {
+        HomeFragment newHome = new HomeFragment();
 
-
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, newHome);
+        fragmentTransaction.commit();
+       // replaceFragment(newHome);
+    }
+    //
 }

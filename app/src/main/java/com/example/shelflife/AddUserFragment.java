@@ -8,6 +8,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+//imports for qrCode
+
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.common.BitMatrix;
+
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AddUserFragment#newInstance} factory method to
@@ -20,13 +38,19 @@ public class AddUserFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public AddUserFragment() {
         // Required empty public constructor
+
     }
+
+    //qrCode private member field
+    private ImageView qrImageView;
+
 
     /**
      * Use this factory method to create a new instance of
@@ -55,10 +79,39 @@ public class AddUserFragment extends Fragment {
         }
     }
 
+    String groupId = "theLifers";
+    String qrCode = "myapp://register?groupId" + groupId;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //View instance and return
+        View view = inflater.inflate(R.layout.fragment_add_user, container, false);
+
+        //qrImageView definition
+        qrImageView = view.findViewById(R.id.qrImageView);
+        generateQRCode(qrCode);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_user, container, false);
+        return view;
     }
+
+    private void generateQRCode(String text){
+        QRCodeWriter writer = new QRCodeWriter();
+        try{
+            // size in pixels
+            int size = 512;
+            BitMatrix bitMatrix = writer.encode(text, BarcodeFormat.QR_CODE, size, size);
+            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565);
+
+            for(int x = 0; x < size; x++){
+                for(int y = 0; y < size; y++){
+                    bitmap.setPixel(x,y, bitMatrix.get(x,y) ? Color.BLACK : Color.WHITE);
+                }
+            }
+        qrImageView.setImageBitmap(bitmap);
+        } catch (WriterException e){
+            e.printStackTrace();
+        }
+    }
+
 }

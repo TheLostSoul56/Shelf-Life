@@ -12,13 +12,8 @@ import android.view.ViewGroup;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import androidx.fragment.app.Fragment;
+import android.widget.ImageView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;

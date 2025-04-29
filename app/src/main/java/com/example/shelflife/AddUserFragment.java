@@ -3,6 +3,8 @@ package com.example.shelflife;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,8 +45,7 @@ public class AddUserFragment extends Fragment {
 
     }
 
-    //qrCode private member field
-    private ImageView qrImageView;
+
 
 
     /**
@@ -65,6 +66,7 @@ public class AddUserFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,9 @@ public class AddUserFragment extends Fragment {
         }
     }
 
+
+    //qrCode private member field
+    private ImageView qrImageView;
     String groupId = "theLifers";
     String qrCode = "myapp://register?groupId" + groupId;
     @Override

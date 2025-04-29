@@ -1,6 +1,7 @@
 package com.example.shelflife;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -35,6 +36,16 @@ public class Registration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+// for qrCode
+
+        Uri data = getIntent().getData();
+        if (data != null && data.getQueryParameter("groupId") != null) {
+          String groupId = data.getQueryParameter("groupId");
+          Log.d("Registration", "Group ID: " + groupId);
+//            String qrContent = "https://google.com";
+//            Log.d("QR_CODE",qrContent);
+        }
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -112,5 +123,10 @@ public class Registration extends AppCompatActivity {
                 Toast.makeText(this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
+
+
+
+
     }
 }

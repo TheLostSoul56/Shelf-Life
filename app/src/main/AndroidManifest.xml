@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.shelflife">
 
+<!--    permissions-->
+<!--    <uses-permission android:name="android.permission.INTERNET" />-->
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -36,7 +39,19 @@
         <!-- Registration screen -->
         <activity
             android:name=".Registration"
-            android:exported="true" />
+            android:exported="true">
+
+            <!--intent filter for Qrcode connection-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="myapp" android:host="register" />
+            </intent-filter>
+        </activity>
+
 
         <!-- Main app screen -->
         <activity

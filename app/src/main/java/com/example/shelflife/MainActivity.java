@@ -5,6 +5,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.widget.SearchView;
+
+import android.util.Log;
+import android.view.View;
+
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -101,24 +107,26 @@ public class MainActivity extends AppCompatActivity {
     public void addUser(View v){
         AddUserFragment newUser = new AddUserFragment();
 
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, newUser);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        
+
         //Fragment newFrag = new Fragment();
         //replaceFragment(newFrag);
     }
+
     public void goBack(View v)
     {
         HomeFragment newHome = new HomeFragment();
-
+        //MainActivity main = new MainActivity();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, newHome);
         fragmentTransaction.commit();
-       // replaceFragment(newHome);
+        // replaceFragment(newHome);
     }
-    //
 }

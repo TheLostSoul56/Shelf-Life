@@ -4,6 +4,11 @@ package com.example.shelflife;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +25,8 @@ import java.util.List;
 public class ShelfFragment extends Fragment {
 private RecyclerView recyclerView;
 private ItemAdapter adapter;
-private List<Item> itemList;
+private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new ArrayList<>());
+
 
     public ShelfFragment() {
         // Required empty public constructor
@@ -30,6 +36,16 @@ private List<Item> itemList;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        getParentFragmentManager().setFragmentResultListener(
+                "addItemRequest", this, (requestKey, bundle) -> {
+                    String newItemName = bundle.getString("newItemName");
+                    if (newItemName != null && !newItemName.isEmpty()){
+                        Item newItem = new Item(newItemName);
+                        addItem(newItem);
+                    }
+                }
+        );
     }
 // within the onCreateView i have put onClickListeners to add items to the list when the add to shelf
     // button is clicked and when the check box it checked and hit delete it will delete only the selected
@@ -41,26 +57,48 @@ private List<Item> itemList;
 
         recyclerView= view.findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        itemList = new ArrayList<>();
-        adapter = new ItemAdapter(itemList);
+        adapter = new ItemAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
+
+        itemListLiveData.observe(getViewLifecycleOwner(), items -> adapter.updateItems(items));
 
         Button addToShelf = view.findViewById(R.id.addToShelf);
         //Button addToList = view.findViewById(R.id.addToList);
         Button delete = view.findViewById(R.id.delete);
 
         addToShelf.setOnClickListener(v -> {
-            itemList.add(new Item("New Item " + (itemList.size() + 1)));
-            adapter.notifyItemInserted(itemList.size() - 1);
-            recyclerView.smoothScrollToPosition(itemList.size() - 1);
+            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_layout, new AddItemFragment());
+            transaction.addToBackStack(null);
+            transaction.commit();
         });
         //addToShelf.setOnClickListener(v -> sendSelectedItemsToList());
-        delete.setOnClickListener(v -> {
-            adapter.deleteSelectedItems();
-        });
+        delete.setOnClickListener(v -> deleteSelectedItems());
 
         return view;
+    }
+
+    private void addItem (Item item) {
+        List<Item> currentList = itemListLiveData.getValue();
+        List<Item> updatedList = new ArrayList<>();
+        if (currentList == null){
+            currentList = new ArrayList<>();
+        }
+        currentList.add(item);
+        itemListLiveData.setValue(new ArrayList<>(currentList));
+    }
+
+    public void deleteSelectedItems(){
+        List<Item> currentList = itemListLiveData.getValue();
+        if (currentList != null){
+            List<Item> updatedList = new ArrayList<>();
+            for (Item item : currentList){
+                if (!item.isSelected()){
+                    updatedList.add(item);
+                }
+            }
+            itemListLiveData.setValue(updatedList);
+        }
     }
 // items class
    public static class Item {
@@ -115,13 +153,11 @@ private List<Item> itemList;
             return itemList.size();
         }
 
-        public void deleteSelectedItems(){
-            for (int i = itemList.size() - 1; i >=0; i--){
-                if (itemList.get(i).isSelected()){
-                    itemList.remove(i);
-                    notifyItemRemoved(i);
-                }
-            }
+
+        public void updateItems(List<Item> newItems){
+            this.itemList.clear();
+            this.itemList.addAll(newItems);
+            notifyDataSetChanged();
         }
 
         public class ItemViewHolder extends RecyclerView.ViewHolder{

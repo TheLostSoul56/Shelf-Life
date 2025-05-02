@@ -4,9 +4,11 @@ package com.example.shelflife;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +27,7 @@ private RecyclerView recyclerView;
 private ItemAdapter adapter;
 private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new ArrayList<>());
 
+
     public ShelfFragment() {
         // Required empty public constructor
     }
@@ -32,6 +35,7 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         getParentFragmentManager().setFragmentResultListener(
                 "addItemRequest", this, (requestKey, bundle) -> {
@@ -42,7 +46,6 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
                     }
                 }
         );
-
     }
 // within the onCreateView i have put onClickListeners to add items to the list when the add to shelf
     // button is clicked and when the check box it checked and hit delete it will delete only the selected
@@ -97,7 +100,6 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
             itemListLiveData.setValue(updatedList);
         }
     }
-
 // items class
    public static class Item {
         private String name;
@@ -151,11 +153,13 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
             return itemList.size();
         }
 
+
         public void updateItems(List<Item> newItems){
             this.itemList.clear();
             this.itemList.addAll(newItems);
             notifyDataSetChanged();
         }
+
         public class ItemViewHolder extends RecyclerView.ViewHolder{
             TextView nameTextView;
             CheckBox checkBox;

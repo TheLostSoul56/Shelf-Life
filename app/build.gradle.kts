@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -41,7 +42,16 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.gson)
     testImplementation(libs.junit)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+
+    //implementation for qrCode
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+
+
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 }

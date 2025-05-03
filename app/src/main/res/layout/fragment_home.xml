@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".HomeFragment">
+
+    <!-- added all the styleings here for the home screen -->
+    <!-- text for the My home -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Home"
+        android:translationY="-20dp"
+        android:translationX="-120dp"
+        android:layout_gravity="center"
+        android:textColor="@color/tan"
+        android:textSize="26sp"/>
+    <!-- the square for the my home -->
+
+    <!-- the rectangle under list-->
+    <RelativeLayout
+        android:layout_width="400sp"
+        android:layout_height="320sp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_square"
+        android:elevation="20dp"
+        android:padding="10dp"
+        android:translationY="159dp">
+
+        <android.widget.Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="76dp"
+            android:layout_alignEnd="@+id/space"
+            android:layout_alignBottom="@+id/space"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="-26dp"
+            android:onClick="addUser"
+            app:tint="@color/black"
+            android:src="@drawable/add_user" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="400sp"
+        android:layout_height="90sp"
+        android:layout_gravity="center"
+        android:translationY="-100dp"
+        android:background="@drawable/rounded_rectangle"
+        android:elevation="20dp"
+        android:padding="10dp">
+    <android.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    </RelativeLayout>
+    <!-- text for the list -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Items Added to Your List"
+        android:textColor="@color/tan"
+        android:textSize="26sp"
+        android:layout_gravity="center"
+        android:translationY="-160dp"
+        android:translationX="-40dp"/>
+    <!-- rectangle for the expire -->
+    <RelativeLayout
+        android:layout_width="400sp"
+        android:layout_height="90sp"
+        android:layout_gravity="center"
+        android:translationY="-235dp"
+        android:background="@drawable/rounded_rectangle"
+        android:elevation="20dp"
+        android:padding="10dp">
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </RelativeLayout>
+    <!-- text for the expire -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Items About To Expire"
+        android:textColor="@color/tan"
+        android:textSize="26sp"
+        android:layout_gravity="center"
+        android:translationY="-300dp"
+        android:translationX="-60dp"/>
+</FrameLayout>

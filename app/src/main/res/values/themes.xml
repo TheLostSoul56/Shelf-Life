@@ -3,7 +3,28 @@
     <style name="Base.Theme.ShelfLife" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/lightBlue</item>
     </style>
 
     <style name="Theme.ShelfLife" parent="Base.Theme.ShelfLife" />
+
+    <style name="ThemeOverlay.ShelfLife.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+
+<!-- settings screen themes -->
+
+        <style name="nightModeSwitch" parent="Theme.AppCompat.Light">
+            <item name="colorControlActivated">@color/night_mode</item>
+            <item name="colorSwitchThumbNormal">#FFFFFF</item>
+            <item name="android:color">#99FFFFFF</item>
+        </style>
+
+        <style name="notificationSwitch" parent="Theme.AppCompat.Light">
+            <item name="colorControlActivated">@color/notification</item>
+            <item name="colorSwitchThumbNormal">#FFFFFF</item>
+            <item name="android:color">#99FFFFFF</item>
+        </style>
+
 </resources>

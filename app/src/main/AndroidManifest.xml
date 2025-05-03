@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.shelflife">
+
+<!--    permissions-->
+<!--    <uses-permission android:name="android.permission.INTERNET" />-->
 
     <application
         android:allowBackup="true"
@@ -12,16 +16,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShelfLife"
         tools:targetApi="31">
+
+
+        <!-- Splash screen (entry point) -->
+
+
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.ShelfLife">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Login screen -->
+        <activity
+            android:name=".Login"
+            android:exported="true" />
+
+        <!-- Registration screen -->
+        <activity
+            android:name=".Registration"
+            android:exported="true">
+
+            <!--intent filter for Qrcode connection-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="myapp" android:host="register" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- Main app screen -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>

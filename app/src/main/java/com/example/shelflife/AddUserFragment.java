@@ -80,7 +80,7 @@ public class AddUserFragment extends Fragment {
     //qrCode private member field
     private ImageView qrImageView;
     String groupId = "theLifers";
-    String qrCode = "myapp://register?groupId" + groupId;
+    String qrCode = "myapp:register?groupId" + groupId;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -3,23 +3,24 @@ package com.example.shelflife;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import android.util.Log;
 import android.view.View;
 
-
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.shelflife.databinding.ActivityMainBinding;
-
-import android.view.View;
-
 import com.example.shelflife.R;
 import com.google.firebase.FirebaseApp;
 
@@ -106,8 +107,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void addUser(View v){
         AddUserFragment newUser = new AddUserFragment();
-
-
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

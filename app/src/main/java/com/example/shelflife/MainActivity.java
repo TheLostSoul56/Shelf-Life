@@ -108,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
     public void addUser(View v){
         AddUserFragment newUser = new AddUserFragment();
 
-
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, newUser);

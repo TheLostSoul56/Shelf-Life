@@ -10,4 +10,14 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+
+
+    <!-- Settings Screen Colors subject to change -->
+    <color name="primary">#205781</color>
+    <color name="secondary">#24C8ED</color>
+
+    <color name="night_mode">#6124B1</color>
+    <color name="notification">#13B2C3</color>
+    <color name="private_account">#E6A326</color>
+    <color name="security">#D95F69</color>
 </resources>

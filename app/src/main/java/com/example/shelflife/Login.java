@@ -20,7 +20,7 @@ public class Login extends AppCompatActivity {
     private TextInputEditText emailInput, passwordInput;
     private Button loginButton;
     private ProgressBar progressBar;
-    private TextView registerRedirect;
+    private TextView registerRedirect, forgotPasswordText;
     private FirebaseAuth auth;
 
     @Override
@@ -35,10 +35,15 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.ProgressBar);
         registerRedirect = findViewById(R.id.loginRegisterNow);
+        forgotPasswordText = findViewById(R.id.textForgotPassword); // updated to match XML
 
         registerRedirect.setOnClickListener(v -> {
             startActivity(new Intent(Login.this, Registration.class));
             finish();
+        });
+
+        forgotPasswordText.setOnClickListener(v -> {
+            startActivity(new Intent(Login.this, ForgotPasswordActivity.class));
         });
 
         loginButton.setOnClickListener(v -> loginUser());

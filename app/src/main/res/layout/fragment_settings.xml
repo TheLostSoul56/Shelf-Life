@@ -86,7 +86,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:paddingTop="20dp"
+                android:paddingTop="20dp"/>
 
 
 
@@ -110,9 +110,9 @@
                         android:id="@+id/nightModeIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/leave_at_door_icon"
-                        android:padding="20dp"
-                        android:src="@drawable/night_mode_icon" />
+                        android:background="@drawable/round_back_night_mode"
+                        android:padding="10dp"
+                        android:src="@drawable/leave_at_door_icon"/>
 
                     <TextView
                         android:layout_width="wrap_content"

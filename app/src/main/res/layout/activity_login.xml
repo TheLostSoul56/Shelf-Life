@@ -83,5 +83,15 @@
             android:layout_marginTop="16dp"
             android:layout_gravity="center"
             android:clickable="true" />
+
+        <Button
+            android:id="@+id/buttonPromptChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Having trouble? Change your password"
+            android:textColor="#FFFFFF"
+            android:background="#F44336"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
     </LinearLayout>
 </FrameLayout>

@@ -17,7 +17,7 @@ import java.util.Calendar;
 
 public class AddItemFragment extends Fragment {
 
-private EditText itemNameEditText, editDate, editExpiredDate;
+private EditText itemNameEditText, editDate, editExpiredDate, storeName;
 private Button cancelBtn, submitBtn;
     public AddItemFragment() {
         // Required empty public constructor
@@ -28,7 +28,7 @@ private Button cancelBtn, submitBtn;
         super.onCreate(savedInstanceState);
 
     }
-
+//handles all the events for each button and tells the app what to do when each one is clicked
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ private Button cancelBtn, submitBtn;
         View view = inflater.inflate(R.layout.fragment_add_item, container, false);
 
         itemNameEditText = view.findViewById(R.id.itemNameForShelf);
+        storeName = view.findViewById(R.id.storeNameForShelf);
         editDate = view.findViewById(R.id.editDate);
         editExpiredDate = view.findViewById(R.id.editExpireDate);
         cancelBtn = view.findViewById(R.id.cancel_addingItem);
@@ -49,9 +50,11 @@ private Button cancelBtn, submitBtn;
 
         submitBtn.setOnClickListener(v-> {
             String itemName = itemNameEditText.getText().toString().trim();
+            String store = storeName.getText().toString().trim();
            if (!itemName.isEmpty()){
                Bundle result = new Bundle();
                result.putString("newItemName", itemName);
+               result.putString("storeName", store);
                getParentFragmentManager().setFragmentResult("addItemRequest", result);
 
                getParentFragmentManager().popBackStack();
@@ -60,7 +63,7 @@ private Button cancelBtn, submitBtn;
 
         return view;
     }
-
+// for the dates so it pops up for the user to select the dates on when bought and when they expire
     private void showDatePicker(EditText targetField) {
        Calendar calendar = Calendar.getInstance();
        DatePickerDialog datePickerDialog = new DatePickerDialog(

@@ -63,6 +63,43 @@ class Store{
             this.isExpanded = false;
         }
 }
+
+@Override
+public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+//this is a listener for when the add to list is added so when its clicked it will run through the current stores
+    //then if found put the product into it if it isnt found then it will create a new drop down
+        getParentFragmentManager().setFragmentResultListener(
+                "itemsForList", this, (requestKey, bundle) -> {
+                   ArrayList<ShelfFragment.Item> selectedItems =
+                           (ArrayList<ShelfFragment.Item>) bundle.getSerializable("selectedItems");
+
+                   if (selectedItems != null){
+                       for (ShelfFragment.Item item : selectedItems){
+                           String storeName = item.getStoreName();
+                           String productName = item.getName();
+
+                           Store matchedStore = null;
+                           for (Store store : storeList){
+                               if (store.name.equalsIgnoreCase(storeName)){
+                                   matchedStore = store;
+                                   break;
+                               }
+                           }
+                           if (matchedStore == null) {
+                               matchedStore = new Store(storeName, new ArrayList<>());
+                               storeList.add(matchedStore);
+                           }
+
+                           matchedStore.products.add(new Product(productName, R.drawable.sample_food));
+                       }
+
+                       adapter.notifyDataSetChanged();
+                       saveStores();
+                       Toast.makeText(getContext(), "Items added to list", Toast.LENGTH_SHORT).show();
+                   }
+                });
+}
 //created the storeadaptor to pretty much put everything together along with onclick listeners
     // so when the store is clicked it highlights it and u can choose to delete it
 class StoreAdapter extends ArrayAdapter<Store>{

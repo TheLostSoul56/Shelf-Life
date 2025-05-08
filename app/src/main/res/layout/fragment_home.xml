@@ -44,6 +44,7 @@
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="-26dp"
             android:onClick="addUser"
+            android:contentDescription="Add New User Button"
             app:tint="@color/black"
             android:src="@drawable/add_user" />
     </RelativeLayout>

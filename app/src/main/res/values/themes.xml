@@ -27,4 +27,31 @@
             <item name="android:color">#99FFFFFF</item>
         </style>
 
+        <style name="doorServiceSwitch" parent="Theme.AppCompat.Light">
+            <item name="colorControlActivated">@color/door_service</item>
+            <item name="colorSwitchThumbNormal">#FFFFFF</item>
+            <item name="android:color">#99FFFFFF</item>
+        </style>
+
+        <style name="enableTipSwitch" parent="Theme.AppCompat.Light">
+            <item name="colorControlActivated">@color/enable_tip</item>
+            <item name="colorSwitchThumbNormal">#FFFFFF</item>
+            <item name="android:color">#99FFFFFF</item>
+        </style>
+
+        <style name="restockAlertSwitch" parent="Theme.AppCompat.Light">
+            <item name="colorControlActivated">@color/restock_alert</item>
+            <item name="colorSwitchThumbNormal">#FFFFFF</item>
+            <item name="android:color">#99FFFFFF</item>
+        </style>
+
+        <style name="priceDropSwitch" parent="Theme.AppCompat.Light">
+            <item name="colorControlActivated">@color/price_drop</item>
+            <item name="colorSwitchThumbNormal">#FFFFFF</item>
+            <item name="android:color">#99FFFFFF</item>
+        </style>
+
+
+
+
 </resources>

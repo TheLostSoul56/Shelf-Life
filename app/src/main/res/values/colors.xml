@@ -21,6 +21,11 @@
     <color name="private_account">#E6A326</color>
     <color name="security">#D95F69</color>
 
+    <color name="door_service">#9C27B0</color>
+    <color name="enable_tip">#00E013</color>
+    <color name="restock_alert">#3F51B5</color>
+    <color name="price_drop">#FF9800</color>
+
     <color name="Grey">#808080</color>
 
 </resources>

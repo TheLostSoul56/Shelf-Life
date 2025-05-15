@@ -21,6 +21,7 @@ public class Login extends AppCompatActivity {
     private Button loginButton;
     private ProgressBar progressBar;
     private TextView registerRedirect;
+    private TextView forgotPasswordButton;
     private FirebaseAuth auth;
 
     @Override
@@ -35,6 +36,7 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.ProgressBar);
         registerRedirect = findViewById(R.id.loginRegisterNow);
+        forgotPasswordButton = findViewById(R.id.forgotPasswordButton);
 
         registerRedirect.setOnClickListener(v -> {
             startActivity(new Intent(Login.this, Registration.class));
@@ -42,6 +44,12 @@ public class Login extends AppCompatActivity {
         });
 
         loginButton.setOnClickListener(v -> loginUser());
+        // Add click listener for forgot password button
+        forgotPasswordButton.setOnClickListener(v -> {
+            // Navigate to ResetPassword activity
+            Intent intent = new Intent(Login.this, ResetPassword.class);
+            startActivity(intent);
+        });
     }
 
     private void loginUser() {

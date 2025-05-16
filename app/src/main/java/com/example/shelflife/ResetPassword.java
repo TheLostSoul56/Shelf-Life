@@ -126,7 +126,7 @@ public class ResetPassword extends AppCompatActivity {
                     // Return to login screen when user clicks OK
                     finish();
                 })
-                .setCancelable(false) // Prevent dismissing by tapping outside
+                .setCancelable(false)
                 .show();
     }
 

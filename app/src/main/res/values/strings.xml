@@ -62,6 +62,17 @@
     <string name="last_name">last_name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Cancel">cancel</string>
+    <string name="enter_your_email_address">enter_your_email_address\n</string>
+    <string name="enter_your_email_address_and_we_ll_send_you_a_link_to_reset_your_password">enter_your_email_address_and_we_ll_send_you_a_link_to_reset_your_password</string>
+    <string name="Reset_Password">Rest_Password</string>
+    <string name="emailText">enter your email address and we will send you a link to reset your password</string>
+    <string name="Reset">Reset</string>
+    <string name="cancel">Cancel</string>
+    <string name="Forgot_Password">Forgot Password?</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="return_to_login">Return to Login</string>
+    <string name="ResetPassword">Reset Password</string>
 </resources>
 
 

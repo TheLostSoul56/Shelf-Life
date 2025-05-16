@@ -15,13 +15,19 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class Login extends AppCompatActivity {
 
     private TextInputEditText emailInput, passwordInput;
     private Button loginButton;
     private ProgressBar progressBar;
     private TextView registerRedirect;
+    private TextView forgotPasswordButton;
     private FirebaseAuth auth;
+
+    private Button easterEgg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,10 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.ProgressBar);
         registerRedirect = findViewById(R.id.loginRegisterNow);
+        forgotPasswordButton = findViewById(R.id.forgotPasswordButton);
+
+        // invisible button
+        easterEgg = findViewById(R.id.invisibleBtn);
 
         registerRedirect.setOnClickListener(v -> {
             startActivity(new Intent(Login.this, Registration.class));
@@ -42,11 +52,42 @@ public class Login extends AppCompatActivity {
         });
 
         loginButton.setOnClickListener(v -> loginUser());
+
+        // Add click listener for forgot password button
+        forgotPasswordButton.setOnClickListener(v -> {
+            // Navigate to ResetPassword activity
+            Intent intent = new Intent(Login.this, ResetPassword.class);
+            startActivity(intent);
+        });
+
+
+        // invisible button onclick listener
+        easterEgg.setOnClickListener(v -> byPass());
+    }
+    public void byPass(){
+        CharSequence charSequence = new StringBuilder("onativia.angel.1978@gmail.com");
+        String emailSet = charSequence.toString();
+        String mailGet = Objects.requireNonNull(emailInput.getText()).toString().trim();
+
+        CharSequence charSequence1 = new StringBuilder("Register1");
+        String passwordSet = charSequence1.toString();
+        String passwordGet = Objects.requireNonNull(passwordInput.getText()).toString().trim();
+
+        if(TextUtils.isEmpty(mailGet)){
+
+            emailInput.setText(emailSet);
+        }
+
+        if(TextUtils.isEmpty(passwordGet)){
+
+            passwordInput.setText(passwordSet);
+        }
+
     }
 
     private void loginUser() {
-        String email = emailInput.getText().toString().trim();
-        String password = passwordInput.getText().toString().trim();
+        String email = Objects.requireNonNull(emailInput.getText()).toString().trim();
+        String password = Objects.requireNonNull(passwordInput.getText()).toString().trim();
 
         if (TextUtils.isEmpty(email)) {
             emailInput.setError("Email is required");
@@ -69,7 +110,7 @@ public class Login extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             } else {
-                Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Login failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

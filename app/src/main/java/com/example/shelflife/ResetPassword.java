@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.google.firebase.auth.FirebaseAuthException;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -110,6 +110,13 @@ public class ResetPassword extends AppCompatActivity {
                         // Show success dialog
                         showSuccessDialog(email);
                     } else {
+                        try {
+                            throw task.getException();
+                        } catch (FirebaseAuthException e) {
+                            System.err.println("Error sending password reset email: " + e.getErrorCode() + " - " + e.getMessage());
+                        } catch (Exception e) {
+                            System.err.println("An unexpected error occurred: " + e.getMessage());
+                        }
                         // Show error message
                         Toast.makeText(ResetPassword.this,
                                 "Failed to send reset email: " + task.getException().getMessage(),

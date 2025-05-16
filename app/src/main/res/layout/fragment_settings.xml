@@ -76,51 +76,51 @@
                 android:textAllCaps="false"
                 android:textColor="@color/primary" />
 
+
             <TextView
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
                 android:text="Order &amp; Delivery"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:paddingTop="20dp"/>
+                android:textStyle="bold"/>
 
-
-
+            <!-- Order & Delivery responsive layout -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/round_back_white10_20"
                 android:orientation="vertical"
                 android:padding="15dp">
 
 
-                <!-- Night Mode toggle on/off-->
+                <!-- Leave At Door Option Toggle on/off-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/nightModeIcon"
+                        android:id="@+id/doorService"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/round_back_night_mode"
+                        android:background="@drawable/round_back_door_service"
                         android:padding="10dp"
-                        android:src="@drawable/leave_at_door_icon"/>
+                        android:src="@drawable/door_service_icon"
+                        android:contentDescription="Leave at Door Toggle"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
-                        android:layout_toEndOf="@+id/nightModeIcon"
-                        android:text="Leave At Dooor"
+                        android:layout_toEndOf="@+id/doorService"
+                        android:text="Leave At Door"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
 
@@ -130,31 +130,88 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:switchMinWidth="50dp"
-                        android:theme="@style/nightModeSwitch" />
+                        android:theme="@style/doorServiceSwitch"/>
                 </RelativeLayout>
 
-                <!-- Notification Toggle on/off-->
+                <!-- Enable Tipping Option Toggle on/off-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:id="@+id/notificationIcon"
+                        android:id="@+id/enable_tipping"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/round_back_notification"
-                        android:padding="8dp"
-                        android:src="@drawable/notification_bell_icon" />
+                        android:background="@drawable/round_back_enable_tip"
+                        android:padding="6dp"
+                        android:src="@drawable/tip_icon"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
-                        android:layout_toEndOf="@+id/notificationIcon"
-                        android:text="Notifications"
+                        android:layout_toEndOf="@+id/enable_tipping"
+                        android:text="Enable Tipping"
                         android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:switchMinWidth="50dp"
+                        android:theme="@style/enableTipSwitch"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Notifications"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <!-- Notifications responsive layout -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/round_back_white10_20"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <!-- Restock Alert Option Toggle on/off -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/restockAlertIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/round_back_restock_alert"
+                        android:padding="8dp"
+                        android:src="@drawable/restock_alert_icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/restockAlertIcon"
+                        android:text="Restock Alert"
+                        android:textColor="#FFFFFF"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.SwitchCompat
@@ -163,12 +220,42 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:switchMinWidth="50dp"
-                        android:theme="@style/notificationSwitch" />
+                        android:theme="@style/restockAlertSwitch"/>
                 </RelativeLayout>
 
+                <!-- Price Drop Alert Option Toggle on/off-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
 
+                    <ImageView
+                        android:id="@+id/price_drop_alert"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/round_back_price_drop"
+                        android:padding="8dp"
+                        android:src="@drawable/price_drop_icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/price_drop_alert"
+                        android:text="Price Drop Alert"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:switchMinWidth="50dp"
+                        android:theme="@style/priceDropSwitch"/>
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

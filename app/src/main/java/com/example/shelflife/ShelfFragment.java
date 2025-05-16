@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.bundle.BundleElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +42,10 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
         getParentFragmentManager().setFragmentResultListener(
                 "addItemRequest", this, (requestKey, bundle) -> {
                     String newItemName = bundle.getString("newItemName");
+                    String storeName = bundle.getString("storeName");
                     if (newItemName != null && !newItemName.isEmpty()){
-                        Item newItem = new Item(newItemName);
-                        addItem(newItem);
+                        //Item newItem = new Item(newItemName, storeName);
+                        addItem(new Item(newItemName, storeName));
                     }
                 }
         );
@@ -63,7 +66,7 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
         itemListLiveData.observe(getViewLifecycleOwner(), items -> adapter.updateItems(items));
 
         Button addToShelf = view.findViewById(R.id.addToShelf);
-        //Button addToList = view.findViewById(R.id.addToList);
+        Button addToList = view.findViewById(R.id.addToList);
         Button delete = view.findViewById(R.id.delete);
 
         addToShelf.setOnClickListener(v -> {
@@ -72,7 +75,27 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
             transaction.addToBackStack(null);
             transaction.commit();
         });
-        //addToShelf.setOnClickListener(v -> sendSelectedItemsToList());
+
+        // event listener for add to list button
+        addToList.setOnClickListener(v -> {
+            List<Item> selectedItems = new ArrayList<>();
+            List<Item> currentItems = itemListLiveData.getValue();
+
+            if (currentItems != null){
+                for (Item item : currentItems){
+                    if (item.isSelected()){
+                        selectedItems.add(item);
+                    }
+                }
+                if (!selectedItems.isEmpty()){
+                    Bundle result = new Bundle();
+                    result.putSerializable("selectedItems", new ArrayList<>(selectedItems));
+                    getParentFragmentManager().setFragmentResult("itemsForList", result);
+                    currentItems.removeAll(selectedItems);
+                    itemListLiveData.setValue(currentItems);
+                }
+            }
+        });
         delete.setOnClickListener(v -> deleteSelectedItems());
 
         return view;
@@ -80,7 +103,6 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
 
     private void addItem (Item item) {
         List<Item> currentList = itemListLiveData.getValue();
-        List<Item> updatedList = new ArrayList<>();
         if (currentList == null){
             currentList = new ArrayList<>();
         }
@@ -103,10 +125,12 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
 // items class
    public static class Item {
         private String name;
+        private String store;
         private boolean isSelected;
 
-        public Item(String name) {
+        public Item(String name, String store) {
             this.name = name;
+            this.store = store;
             this.isSelected = false;
         }
 
@@ -120,6 +144,10 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
 
         public void setSelected(boolean selected) {
             isSelected = selected;
+        }
+
+        public String getStoreName(){
+            return store;
         }
    }
 // the item adapter that will track the position of each item so when deleted is clicked

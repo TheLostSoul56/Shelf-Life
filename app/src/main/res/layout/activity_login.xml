@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,7 +10,8 @@
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash_screen_image"/>
 
     <!-- Login Form -->
     <LinearLayout
@@ -20,38 +22,55 @@
         android:gravity="center"
         android:background="#AAFFFFFF">
 
+        <!-- Invisible Button for AutoFill Login -->
+        <Button
+            android:id="@+id/invisibleBtn"
+            android:contentDescription="Invisible AutoFill Button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="200dp"
+            android:background="@color/zxing_transparent" />
+
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
             android:text="@string/login"
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:background="@color/white"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="12dp"
+            android:background="@color/white">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:background="@android:color/transparent"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="12dp"
+            android:background="@color/white">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:background="@android:color/transparent"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ProgressBar

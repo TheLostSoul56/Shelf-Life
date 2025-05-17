@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.shelflife"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.shelflife"
@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.gson)
+    implementation(libs.activity)
     testImplementation(libs.junit)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)

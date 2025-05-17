@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.shelflife">
 
+
 <!--    permissions-->
 <!--    <uses-permission android:name="android.permission.INTERNET" />-->
 
@@ -10,6 +11,7 @@
     <uses-feature android:name="android.hardware.camera.any"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED"/>
+
 
     <application
         android:allowBackup="true"
@@ -21,8 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShelfLife"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".ResetPassword"
+            android:exported="false" />
         <!-- Splash screen (entry point) -->
 
         <activity
@@ -31,37 +34,32 @@
             android:theme="@style/Theme.ShelfLife">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Login screen -->
+        </activity> <!-- Login screen -->
         <activity
             android:name=".Login"
-            android:exported="true" />
-
-        <!-- Registration screen -->
+            android:exported="true" /> <!-- Registration screen -->
         <activity
             android:name=".Registration"
             android:exported="true">
 
-            <!--intent filter for Qrcode connection-->
+            <!-- intent filter for Qrcode connection -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="myapp" android:host="register" />
+                <data
+                    android:host="register"
+                    android:scheme="myapp" />
             </intent-filter>
-        </activity>
-
-
-        <!-- Main app screen -->
+        </activity> <!-- Main app screen -->
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
     </application>
 
 </manifest>

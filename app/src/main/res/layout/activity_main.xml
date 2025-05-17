@@ -9,6 +9,8 @@
     tools:context=".MainActivity">
 
 
+
+
 <!-- constraint layout to hold the toolbar, frame layout, and the bottom nav bar-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -34,6 +36,10 @@
             app:layout_constraintStart_toStartOf="parent">
 
         </FrameLayout>
+
+
+
+
         <!-- the bottom nav bar -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
@@ -44,6 +50,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/menu_main" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

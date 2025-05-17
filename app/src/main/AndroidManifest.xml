@@ -3,6 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.shelflife">
 
+
+<!--    permissions-->
+<!--    <uses-permission android:name="android.permission.INTERNET" />-->
+
+    <!-- camera permissions -->
+    <uses-feature android:name="android.hardware.camera.any"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED"/>
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,6 +27,7 @@
             android:name=".ResetPassword"
             android:exported="false" />
         <!-- Splash screen (entry point) -->
+
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"

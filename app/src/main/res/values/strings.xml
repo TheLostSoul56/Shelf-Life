@@ -62,6 +62,11 @@
     <string name="last_name">last_name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- label for take photo -->
+    <string name="take_photo">Take Photo</string>
+
     <string name="Cancel">cancel</string>
     <string name="enter_your_email_address">enter_your_email_address\n</string>
     <string name="enter_your_email_address_and_we_ll_send_you_a_link_to_reset_your_password">enter_your_email_address_and_we_ll_send_you_a_link_to_reset_your_password</string>
@@ -73,6 +78,7 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="return_to_login">Return to Login</string>
     <string name="ResetPassword">Reset Password</string>
+
 </resources>
 
 

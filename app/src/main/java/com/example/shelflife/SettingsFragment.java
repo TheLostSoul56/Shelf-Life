@@ -1,12 +1,23 @@
 package com.example.shelflife;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +34,8 @@ public class SettingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ImageView profileImage;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -53,13 +66,51 @@ public class SettingsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
 
+    }
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
+    @Override
+            public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
+        //------------------------------------------------
+        // image picker code
+        profileImage = view.findViewById(R.id.profilePic);
+        registerResult();
+        profileImage.setOnClickListener(v->pickImage());
+    }
+
+
+
+    //---------------------------------------------------------
+    // open camera and place Image in profile Pic Image view
+    //ImageView imageView;
+    ActivityResultLauncher<Intent> resultLauncher;
+
+    private void pickImage(){
+        Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+        resultLauncher.launch(intent);
+    }
+    MainActivity main;
+    private void registerResult(){
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    try{
+                        assert result.getData() != null;
+                        Uri imageUri = result.getData().getData();
+                        profileImage.setImageURI(imageUri);
+                    }catch(Exception e){
+                        Toast.makeText( main.getApplicationContext(),"No Image Picked", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+    }
 }

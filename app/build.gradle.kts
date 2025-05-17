@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.support.kotlinCompilerOptions
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
@@ -30,6 +32,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+
     buildFeatures {
         viewBinding = true
     }
@@ -48,7 +52,20 @@ dependencies {
     implementation(libs.firebase.firestore)
 
     //implementation for qrCode
-    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation(libs.zxing.android.embedded)
+
+    //also for cameraX
+    implementation(libs.concurrent.futures.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+
+    //implementation for cameraX
+    //def camerax_version
+
+    implementation(libs.camera.core)
+    implementation(libs.camera.camera2)
+    implementation(libs.camera.view)
+    implementation(libs.camera.lifecycle)
+
 
 
     androidTestImplementation(libs.ext.junit)

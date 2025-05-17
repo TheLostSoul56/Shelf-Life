@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,19 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.bundle.BundleElement;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ShelfFragment extends Fragment {
 private RecyclerView recyclerView;
@@ -56,6 +66,7 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        loadShelfItemsFromFirestore();
         View view = inflater.inflate(R.layout.fragment_shelf,container, false);
 
         recyclerView= view.findViewById(R.id.recycleView);
@@ -91,6 +102,20 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
                     Bundle result = new Bundle();
                     result.putSerializable("selectedItems", new ArrayList<>(selectedItems));
                     getParentFragmentManager().setFragmentResult("itemsForList", result);
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    if (currentUser != null){
+                        String userId = currentUser.getUid();
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        CollectionReference shelfRef = db.collection("users").document(userId).collection("shelfItems");
+
+                        for (Item item : selectedItems) {
+                            String docId = item.getDocumentID();
+                            if (docId != null) {
+                                shelfRef.document(docId).delete().addOnCompleteListener(aVoid -> Log.d("Firestore", "Item moved & deleted: " + docId))
+                                        .addOnFailureListener(e -> Log.e("Firestore", "Failed to delete item: " + docId, e));
+                            }
+                        }
+                    }
                     currentItems.removeAll(selectedItems);
                     itemListLiveData.setValue(currentItems);
                 }
@@ -102,6 +127,23 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
     }
 
     private void addItem (Item item) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            return;
+        }
+
+        String userID = currentUser.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        CollectionReference shelfRef = db.collection("users").document(userID).collection("shelfItems");
+
+        Map<String, Object> itemMap = new HashMap<>();
+        itemMap.put("name", item.getName());
+        itemMap.put("store", item.getStoreName());
+
+        shelfRef.add(itemMap).addOnSuccessListener(documentReference -> Log.d("FireStore", "Item added: " + documentReference.getId()))
+                .addOnFailureListener(e -> Log.d("FireStore", "Error adding item", e));
+
         List<Item> currentList = itemListLiveData.getValue();
         if (currentList == null){
             currentList = new ArrayList<>();
@@ -111,12 +153,27 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
     }
 
     public void deleteSelectedItems(){
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+             return;
+        }
+
+        String userID = currentUser.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference shelfRef = db.collection("users").document(userID).collection("shelfItems");
+
         List<Item> currentList = itemListLiveData.getValue();
         if (currentList != null){
             List<Item> updatedList = new ArrayList<>();
             for (Item item : currentList){
                 if (!item.isSelected()){
                     updatedList.add(item);
+                }else {
+                    String docID = item.getDocumentID();
+                    if (docID != null) {
+                        shelfRef.document(docID).delete().addOnCompleteListener(aVoid -> Log.d("Firestore", "Item deleted"))
+                                .addOnFailureListener(e -> Log.e("Firestore", "Delete failed, e"));
+                    }
                 }
             }
             itemListLiveData.setValue(updatedList);
@@ -127,11 +184,27 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
         private String name;
         private String store;
         private boolean isSelected;
+        private String documentID;
 
         public Item(String name, String store) {
             this.name = name;
             this.store = store;
             this.isSelected = false;
+        }
+
+        public Item(String name, String store, String documentID) {
+            this.name = name;
+            this.store = store;
+            this.documentID = documentID;
+            this.isSelected = false;
+        }
+
+        public String getDocumentID(){
+            return documentID;
+        }
+
+        public void setDocumentID(String documentID) {
+            this.documentID = documentID;
         }
 
         public String getName() {
@@ -198,6 +271,35 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
                 checkBox = itemView.findViewById(R.id.itemCheckbox);
             }
         }
+   }
+
+   private void loadShelfItemsFromFirestore() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null){
+            return;
+        }
+
+        String userID = currentUser.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        CollectionReference shelfRef = db.collection("users").document(userID).collection("shelfItems");
+
+        shelfRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Item> loadedItems = new ArrayList<>();
+                for (DocumentSnapshot doc : task.getResult()) {
+                    String name = doc.getString("name");
+                    String store = doc.getString("store");
+                    if (name != null && store != null) {
+                        String docID = doc.getId();
+                        loadedItems.add(new Item(name, store, docID));
+                    }
+                }
+                itemListLiveData.setValue(loadedItems);
+            }else {
+                Log.e("Firestore", "Failed to load shelf items", task.getException());
+            }
+        });
    }
 
 }

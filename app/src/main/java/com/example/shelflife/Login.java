@@ -20,20 +20,13 @@ import java.util.Objects;
 public class Login extends AppCompatActivity {
 
     private TextInputEditText emailInput, passwordInput;
-    private Button loginButton, buttonPromptChangePassword;
+    private Button loginButton;
     private ProgressBar progressBar;
-
-    private TextView registerRedirect, forgotPasswordText;
-    private FirebaseAuth auth;
-
-    private int failedLoginAttempts = 0;
-
     private TextView registerRedirect;
     private TextView forgotPasswordButton;
     private FirebaseAuth auth;
 
     private Button easterEgg;
-
 
 
     @Override
@@ -48,28 +41,14 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.ProgressBar);
         registerRedirect = findViewById(R.id.loginRegisterNow);
-
-        forgotPasswordText = findViewById(R.id.textForgotPassword);
-        buttonPromptChangePassword = findViewById(R.id.buttonPromptChangePassword);
-
         forgotPasswordButton = findViewById(R.id.forgotPasswordButton);
 
         // invisible button
         easterEgg = findViewById(R.id.invisibleBtn);
 
-
         registerRedirect.setOnClickListener(v -> {
             startActivity(new Intent(Login.this, Registration.class));
             finish();
-        });
-
-        forgotPasswordText.setOnClickListener(v -> {
-            startActivity(new Intent(Login.this, ForgotPasswordActivity.class));
-        });
-
-        buttonPromptChangePassword.setOnClickListener(v -> {
-            Intent intent = new Intent(Login.this, ForgotPasswordActivity.class);
-            startActivity(intent);
         });
 
         loginButton.setOnClickListener(v -> loginUser());
@@ -125,23 +104,13 @@ public class Login extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             progressBar.setVisibility(View.GONE);
             if (task.isSuccessful()) {
-                failedLoginAttempts = 0;
                 FirebaseUser user = auth.getCurrentUser();
                 Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             } else {
-
-                failedLoginAttempts++;
-                Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-
-                if (failedLoginAttempts >= 3) {
-                    buttonPromptChangePassword.setVisibility(View.VISIBLE);
-                }
-
                 Toast.makeText(this, "Login failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
-
             }
         });
     }

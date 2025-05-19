@@ -20,7 +20,7 @@
         android:id="@+id/expired"/>
 
     <item android:title="Settings"
-        android:icon="@drawable/settings"
+        android:icon="@drawable/settings_icon"
         android:id="@+id/settings"/>
 
 </menu>

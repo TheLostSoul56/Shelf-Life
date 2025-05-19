@@ -1,37 +1,41 @@
 package com.example.shelflife;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 
-import android.text.TextUtils;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.shelflife.databinding.ActivityMainBinding;
-import com.example.shelflife.R;
-import com.google.firebase.FirebaseApp;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.net.URI;
 
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+
 
     }
 
@@ -112,19 +117,16 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, newUser);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-
-        //Fragment newFrag = new Fragment();
-        //replaceFragment(newFrag);
     }
 
     public void goBack(View v) {
         HomeFragment newHome = new HomeFragment();
-        //MainActivity main = new MainActivity();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, newHome);
-        fragmentTransaction.commit();
-        // replaceFragment(newHome);
+        replaceFragment(newHome);
+    }
+
+    public void goToEditProfile(View view) {
+        EditProfile editProfile = new EditProfile();
+        replaceFragment(editProfile);
     }
 
 }

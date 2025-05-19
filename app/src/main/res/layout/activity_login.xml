@@ -1,9 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <!-- Background Image -->
     <ImageView
@@ -13,6 +15,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/splash_screen_image"/>
 
+
     <!-- Login Form -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +23,7 @@
         android:orientation="vertical"
         android:padding="24dp"
         android:gravity="center"
-        android:background="#AAFFFFFF">
+        android:background="#FFFFFF">
 
         <!-- Invisible Button for AutoFill Login -->
         <Button
@@ -37,10 +40,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:text="Login"
+
             android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:text="@string/login"
+           
             android:textColor="#000000"
+
             android:textSize="20sp"
             android:textStyle="bold"
             android:background="@color/white"/>
@@ -48,9 +55,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email"
+
+            android:hint="Email"
+          
+          
             android:layout_marginBottom="12dp"
             android:background="@color/white">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
@@ -62,9 +73,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:layout_marginBottom="12dp"
+
+            android:hint="Password"
+            android:layout_marginBottom="12dp">
+
+            
+           
             android:background="@color/white">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
@@ -85,7 +101,7 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="Login"
             android:background="#1565C0"
             android:textColor="#FFFFFF" />
 
@@ -96,22 +112,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+
+            android:text="Register"
+
             android:background="#1565C0"
             android:text="@string/register"
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/forgotPasswordButton"
+            android:id="@+id/textForgotPassword"
             android:layout_width="wrap_content"
-            android:layout_height="57dp"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
             android:layout_gravity="center"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="12dp"
-            android:text="@string/forgot_password"
-            android:textColor="#1565C0"
-            android:textSize="16sp" />
+            android:clickable="true" />
 
+        <Button
+            android:id="@+id/buttonPromptChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Having trouble? Change your password"
+            android:textColor="#FFFFFF"
+            android:background="#F44336"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 </FrameLayout>

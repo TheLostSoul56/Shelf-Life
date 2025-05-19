@@ -20,12 +20,6 @@
         android:theme="@style/Theme.ShelfLife"
         tools:targetApi="31">
 
-        <activity
-
-            android:name=".ForgotPasswordActivity"
-            android:name=".ResetPassword"
-
-            android:exported="false" />
 
         <!-- Splash screen (entry point) -->
 
@@ -47,7 +41,6 @@
         <!-- Registration screen -->
         <activity
             android:name=".Registration"
-
             android:exported="true">
 
             <!--intent filter for Qrcode connection-->
@@ -59,12 +52,10 @@
 
                 <data android:scheme="myapp" android:host="register" />
             </intent-filter>
-
         </activity>
 
 
         <!-- Main app screen -->
-
         <activity
             android:name=".MainActivity"
             android:exported="true" />

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddItemFragment">
+
+    <EditText
+        android:id="@+id/itemNameForShelf"
+        android:layout_width="210dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Item Name"
+        android:layout_gravity="center"
+        android:translationY="-300dp"
+        android:background="@drawable/background_for_additemfragment"/>
+
+    <EditText
+        android:id="@+id/storeNameForShelf"
+        android:layout_width="210dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Store Name"
+        android:layout_gravity="center"
+        android:translationY="-250dp"
+        android:background="@drawable/background_for_additemfragment"/>
+    <EditText
+        android:id="@+id/editDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Purchase Date"
+        android:focusable="false"
+        android:inputType="none"
+        android:clickable="true"
+        android:drawableEnd="@android:drawable/ic_menu_today"
+        android:padding="12dp"
+        android:textColorHint = "@color/Grey"
+        android:layout_gravity="center_vertical"
+        android:translationY="-130dp"
+        android:translationX="20dp"
+        android:background="@drawable/background_for_additemfragment"/>
+    <EditText
+        android:id="@+id/editExpireDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Expired Date"
+        android:focusable="false"
+        android:inputType="none"
+        android:clickable="true"
+        android:drawableEnd="@android:drawable/ic_menu_today"
+        android:padding="12dp"
+        android:textColorHint = "@color/Grey"
+        android:layout_gravity="center_vertical"
+        android:translationY="-130dp"
+        android:translationX="240dp"
+        android:background="@drawable/background_for_additemfragment"/>
+    <Button
+        android:id="@+id/cancel_addingItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:translationY = "325dp"
+        android:translationX="50dp"/>
+    <Button
+        android:id="@+id/submitToShelf"
+        android:layout_width="wrap_content"
+        android:text="Submit"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:translationY="325dp"
+        android:translationX="-50dp"/>
+</FrameLayout>

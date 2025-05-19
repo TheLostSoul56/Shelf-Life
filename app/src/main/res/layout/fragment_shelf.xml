@@ -6,13 +6,52 @@
     android:background="@color/blue"
     tools:context=".ShelfFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Shelf screen"
-        android:textColor="@color/tan"
+    <RelativeLayout
+        android:layout_width="400sp"
+        android:layout_height="690sp"
         android:layout_gravity="center"
-        android:textSize="26sp" />
+        android:background="@drawable/rounded_square">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycleView"
+            android:layout_above="@+id/shelfButtons"
+            android:layout_alignParentTop="true"
+            android:padding="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shelfButtons"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/addToList"
+                android:text="Add to List"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/addToShelf"
+                android:text="Add to Shelf"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/delete"
+                android:text="Delete"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </FrameLayout>

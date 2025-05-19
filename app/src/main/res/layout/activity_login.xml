@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash_screen_image"/>
+
 
     <!-- Login Form -->
     <LinearLayout
@@ -14,38 +25,68 @@
         android:gravity="center"
         android:background="#FFFFFF">
 
+        <!-- Invisible Button for AutoFill Login -->
+        <Button
+            android:id="@+id/invisibleBtn"
+            android:contentDescription="Invisible AutoFill Button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="200dp"
+            android:background="@color/zxing_transparent" />
+
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:text="Login"
+
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+           
+            android:textColor="#000000"
+
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:background="@color/white"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:hint="Email"
-            android:layout_marginBottom="12dp">
+          
+          
+            android:layout_marginBottom="12dp"
+            android:background="@color/white">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:background="@android:color/transparent"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:hint="Password"
             android:layout_marginBottom="12dp">
+
+            
+           
+            android:background="@color/white">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:background="@android:color/transparent"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ProgressBar
@@ -64,13 +105,18 @@
             android:background="#1565C0"
             android:textColor="#FFFFFF" />
 
+        <!-- Forgot Password Button -->
+
         <Button
             android:id="@+id/loginRegisterNow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+
             android:text="Register"
+
             android:background="#1565C0"
+            android:text="@string/register"
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -93,5 +139,6 @@
             android:background="#F44336"
             android:layout_marginTop="16dp"
             android:visibility="gone" />
+
     </LinearLayout>
 </FrameLayout>

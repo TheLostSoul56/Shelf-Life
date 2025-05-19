@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="400sp"
-        android:layout_height="700sp"
+        android:layout_height="690sp"
         android:layout_gravity="center"
         android:background="@drawable/rounded_square"
         android:elevation="20dp"

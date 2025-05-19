@@ -10,4 +10,22 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+
+
+    <!-- Settings Screen Colors subject to change -->
+    <color name="primary">#205781</color>
+    <color name="secondary">#24C8ED</color>
+
+    <color name="night_mode">#6124B1</color>
+    <color name="notification">#13B2C3</color>
+    <color name="private_account">#E6A326</color>
+    <color name="security">#D95F69</color>
+
+    <color name="door_service">#9C27B0</color>
+    <color name="enable_tip">#00E013</color>
+    <color name="restock_alert">#3F51B5</color>
+    <color name="price_drop">#FF9800</color>
+
+    <color name="Grey">#808080</color>
+
 </resources>

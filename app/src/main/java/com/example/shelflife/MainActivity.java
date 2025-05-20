@@ -129,4 +129,8 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(editProfile);
     }
 
+
+//    public void openCamera(View v) {
+//
+//    }
 }

@@ -21,6 +21,7 @@
         tools:targetApi="31">
 
 
+
         <!-- Splash screen (entry point) -->
 
         <activity
@@ -41,6 +42,7 @@
         <!-- Registration screen -->
         <activity
             android:name=".Registration"
+
             android:exported="true">
 
             <!--intent filter for Qrcode connection-->
@@ -52,10 +54,12 @@
 
                 <data android:scheme="myapp" android:host="register" />
             </intent-filter>
+
         </activity>
 
 
         <!-- Main app screen -->
+
         <activity
             android:name=".MainActivity"
             android:exported="true" />

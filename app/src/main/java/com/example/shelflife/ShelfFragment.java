@@ -28,6 +28,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.bundle.BundleElement;
 
+import org.jetbrains.annotations.NonNls;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +40,7 @@ public class ShelfFragment extends Fragment {
 private RecyclerView recyclerView;
 private ItemAdapter adapter;
 private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new ArrayList<>());
+private List<Item> fullItemList = new ArrayList<>();
 
 
     public ShelfFragment() {
@@ -295,9 +298,40 @@ private MutableLiveData<List<Item>> itemListLiveData = new MutableLiveData<>(new
                         loadedItems.add(new Item(name, store, docID));
                     }
                 }
+                fullItemList = new ArrayList<>(loadedItems);
                 itemListLiveData.setValue(loadedItems);
             }else {
                 Log.e("Firestore", "Failed to load shelf items", task.getException());
+            }
+        });
+   }
+
+   public void filterItem(String query) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+       if (currentUser == null) {
+           return;
+       }
+       String userID = currentUser.getUid();
+       FirebaseFirestore db = FirebaseFirestore.getInstance();
+       CollectionReference shelfRef = db.collection("users").document(userID).collection("shelfItems");
+
+
+        if (query == null || query.trim().isEmpty()){
+            loadShelfItemsFromFirestore();
+            return;
+        }
+
+        shelfRef.orderBy("name").startAt(query.toLowerCase()).endAt(query.toLowerCase() + "\uf8ff").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Item> filteredItems = new ArrayList<>();
+                for (DocumentSnapshot doc : task.getResult()){
+                    String name = doc.getString("name");
+                    String store = doc.getString("store");
+                    if (name != null && store != null) {
+                        filteredItems.add(new Item(name,store,doc.getId()));
+                    }
+                }
+                adapter.updateItems(filteredItems);
             }
         });
    }

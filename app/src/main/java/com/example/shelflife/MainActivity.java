@@ -101,8 +101,12 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
+                    Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_layout);
+                    if (currentFragment instanceof ShelfFragment) {
+                        ((ShelfFragment) currentFragment).filterItem(newText);
+                    }
 
-                    return false;
+                    return true;
                 }
             });
         }

@@ -147,12 +147,14 @@ private List<Item> fullItemList = new ArrayList<>();
         shelfRef.add(itemMap).addOnSuccessListener(documentReference -> Log.d("FireStore", "Item added: " + documentReference.getId()))
                 .addOnFailureListener(e -> Log.d("FireStore", "Error adding item", e));
 
+
         List<Item> currentList = itemListLiveData.getValue();
         if (currentList == null){
             currentList = new ArrayList<>();
         }
         currentList.add(item);
         itemListLiveData.setValue(new ArrayList<>(currentList));
+
     }
 
     public void deleteSelectedItems(){
@@ -306,7 +308,7 @@ private List<Item> fullItemList = new ArrayList<>();
         });
    }
 
-   public void filterItem(String query) {
+  public void filterItem(String query) {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
        if (currentUser == null) {
            return;
@@ -327,7 +329,7 @@ private List<Item> fullItemList = new ArrayList<>();
                 for (DocumentSnapshot doc : task.getResult()){
                     String name = doc.getString("name");
                     String store = doc.getString("store");
-                    if (name != null && store != null) {
+                    if (name != null && store != null && name.toLowerCase().contains(query.toLowerCase())) {
                         filteredItems.add(new Item(name,store,doc.getId()));
                     }
                 }

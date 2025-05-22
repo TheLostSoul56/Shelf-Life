@@ -97,6 +97,7 @@ public class SettingsFragment extends Fragment {
     private void pickImage(){
         Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
         resultLauncher.launch(intent);
+
     }
     MainActivity main;
     private void registerResult(){
@@ -107,6 +108,7 @@ public class SettingsFragment extends Fragment {
                         assert result.getData() != null;
                         Uri imageUri = result.getData().getData();
                         profileImage.setImageURI(imageUri);
+                        profileImage.setClipToOutline(true);
                     }catch(Exception e){
                         Toast.makeText( main.getApplicationContext(),"No Image Picked", Toast.LENGTH_SHORT).show();
                     }

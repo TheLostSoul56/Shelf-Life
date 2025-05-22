@@ -68,7 +68,7 @@ class Store{
 public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 //this is a listener for when the add to list is added so when its clicked it will run through the current stores
-    //then if found put the product into it if it isnt found then it will create a new drop down
+    //then if found put the product into it if it isn't found then it will create a new drop down
         getParentFragmentManager().setFragmentResultListener(
                 "itemsForList", this, (requestKey, bundle) -> {
                    ArrayList<ShelfFragment.Item> selectedItems =
@@ -100,7 +100,7 @@ public void onCreate(Bundle savedInstanceState){
                    }
                 });
 }
-//created the storeadaptor to pretty much put everything together along with onclick listeners
+//created the store adaptor to pretty much put everything together along with onclick listeners
     // so when the store is clicked it highlights it and u can choose to delete it
 class StoreAdapter extends ArrayAdapter<Store>{
         StoreAdapter(Context context, List<Store> stores){
@@ -214,7 +214,7 @@ class StoreAdapter extends ArrayAdapter<Store>{
 
 
     }
-//set up a save stores method to save the input stores so they dont delete when you change the screen
+//set up a save stores method to save the input stores so they don't delete when you change the screen
     private void saveStores(){
         SharedPreferences prefs = getActivity().getSharedPreferences("store_data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -223,7 +223,7 @@ class StoreAdapter extends ArrayAdapter<Store>{
         editor.putString("store_list", json);
         editor.apply();
     }
-//set up a meathod to load all of the saved stores when the app is loaded or after the user changes screens
+//set up a method to load all of the saved stores when the app is loaded or after the user changes screens
     private void loadStores(){
         SharedPreferences prefs = getActivity().getSharedPreferences("store_data", Context.MODE_PRIVATE);
         Gson gson = new Gson();

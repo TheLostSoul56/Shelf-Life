@@ -41,7 +41,6 @@
             android:orientation="vertical">
 
 
-
                     <ImageView
                         android:id="@+id/profilePic"
                         android:contentDescription="User Profile Photo"
@@ -141,6 +140,17 @@
                         android:theme="@style/doorServiceSwitch"/>
                 </RelativeLayout>
 
+                <!-- This is where I want my Horizontal Divider / J Separator -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    style="@style/Divider.Horizontal"/>
+
+
+
+
+
                 <!-- Enable Tipping Option Toggle on/off-->
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -230,6 +240,15 @@
                         android:switchMinWidth="50dp"
                         android:theme="@style/restockAlertSwitch"/>
                 </RelativeLayout>
+
+
+                <!-- This is where I want my Horizontal Divider / J Separator -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    style="@style/Divider.Horizontal"/>
+
 
                 <!-- Price Drop Alert Option Toggle on/off-->
                 <RelativeLayout

@@ -1,20 +1,11 @@
 package com.example.shelflife;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.PickVisualMediaRequest;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
@@ -25,11 +16,7 @@ import com.example.shelflife.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import java.io.IOException;
-import java.net.URI;
+import android.widget.RelativeLayout;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -128,13 +115,14 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(newHome);
     }
 
-    public void goToEditProfile(View view) {
-        EditProfile editProfile = new EditProfile();
+    public void goToEditProfile(View v) {
+        EditProfileFragment editProfile = new EditProfileFragment();
         replaceFragment(editProfile);
     }
 
+    public void goToPersonalInfo(View v){
+        Personal_InformationFragment newPersonal = new Personal_InformationFragment();
+        replaceFragment(newPersonal);
+    }
 
-//    public void openCamera(View v) {
-//
-//    }
 }

@@ -109,6 +109,7 @@ public class SettingsFragment extends Fragment {
                         Uri imageUri = result.getData().getData();
                         profileImage.setImageURI(imageUri);
                         profileImage.setClipToOutline(true);
+                        profileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     }catch(Exception e){
                         Toast.makeText( main.getApplicationContext(),"No Image Picked", Toast.LENGTH_SHORT).show();
                     }

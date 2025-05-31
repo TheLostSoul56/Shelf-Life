@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 
-public class AddItemFragment extends Fragment {
+public class  AddItemFragment extends Fragment {
 
 private EditText itemNameEditText, editDate, editExpiredDate, storeName;
 private Button cancelBtn, submitBtn;

@@ -7,71 +7,76 @@
 
     <EditText
         android:id="@+id/itemNameForShelf"
-        android:layout_width="210dp"
-        android:layout_height="45dp"
+        android:layout_width="255dp"
+        android:layout_height="55dp"
         android:ems="10"
         android:inputType="text"
-        android:hint="Item Name"
+        android:hint="@string/Item_Name"
         android:layout_gravity="center"
+        android:textColor="@color/white"
         android:translationY="-300dp"
         android:background="@drawable/background_for_additemfragment"/>
 
     <EditText
         android:id="@+id/storeNameForShelf"
-        android:layout_width="210dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Store Name"
+        android:layout_width="255dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:translationY="-250dp"
-        android:background="@drawable/background_for_additemfragment"/>
+        android:background="@drawable/background_for_additemfragment"
+        android:ems="10"
+        android:hint="Store Name"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:translationY="-228dp" />
+
     <EditText
         android:id="@+id/editDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Purchase Date"
-        android:focusable="false"
-        android:inputType="none"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/background_for_additemfragment"
         android:clickable="true"
         android:drawableEnd="@android:drawable/ic_menu_today"
+        android:focusable="false"
+        android:hint="Purchase Date"
+        android:inputType="none"
         android:padding="12dp"
-        android:textColorHint = "@color/Grey"
-        android:layout_gravity="center_vertical"
-        android:translationY="-130dp"
+        android:textColorHint="@color/white"
         android:translationX="20dp"
-        android:background="@drawable/background_for_additemfragment"/>
+        android:translationY="-130dp" />
     <EditText
         android:id="@+id/editExpireDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Expired Date"
+        android:hint="@string/Expired_Date"
         android:focusable="false"
         android:inputType="none"
         android:clickable="true"
-        android:drawableEnd="@android:drawable/ic_menu_today"
+        android:drawableEnd="@drawable/baseline_more_vert_24"
         android:padding="12dp"
-        android:textColorHint = "@color/Grey"
+        android:textColorHint = "@color/white"
         android:layout_gravity="center_vertical"
         android:translationY="-130dp"
         android:translationX="240dp"
         android:background="@drawable/background_for_additemfragment"/>
+
     <Button
         android:id="@+id/cancel_addingItem"
-        android:layout_width="wrap_content"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:textColor="@color/black"
         android:layout_gravity="center"
-        android:translationY = "325dp"
-        android:translationX="50dp"/>
+        android:text="@string/Cancel"
+        android:textColor="@color/black"
+        android:translationX="50dp"
+        android:translationY="325dp" />
+
     <Button
         android:id="@+id/submitToShelf"
-        android:layout_width="wrap_content"
-        android:text="Submit"
-        android:textColor="@color/black"
+        android:layout_width="123dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:translationY="325dp"
-        android:translationX="-50dp"/>
+        android:text="@string/Submit"
+        android:textColor="@color/black"
+        android:translationX="-70dp"
+        android:translationY="325dp" />
 </FrameLayout>

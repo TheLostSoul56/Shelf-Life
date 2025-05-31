@@ -74,6 +74,23 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="return_to_login">Return to Login</string>
     <string name="ResetPassword">Reset Password</string>
+    <string name="no_expired_items_found">No expired items found</string>
+    <string name="Expired_Items">Expired Items</string>
+    <string name="Delete_Selected">Delete Selected</string>
+    <string name="Restore_to_Shelf">Restore to shelf</string>
+    <string name="Expired_Items_Receipts">Expired Items Receipts</string>
+    <string name="My_Shelf">My Shelf</string>
+    <string name="Add_Item">Add Items</string>
+    <string name="Shelf_empty">Your shelf is empty.\nAdd items to get started!</string>
+    <string name="Expired_Date">Expired Date</string>
+    <string name="Submit">Submit</string>
+    <string name="Item_Name">Item Name</string>
+    <string name="Store">Store: Example Store</string>
+    <string name="Expired">Expired: Jan 01, 2024</string>
+    <string name="Purchased">Purchased: Dec 01, 2023</string>
+    <string name="Expiring_Soon">Expiring Soon</string>
+    <string name="By_Store">By Store</string>
+    <string name="By_Date">By Date</string>
 
 </resources>
 

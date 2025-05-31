@@ -36,6 +36,8 @@ public class Login extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+
+
         emailInput = findViewById(R.id.email);
         passwordInput = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
@@ -43,8 +45,7 @@ public class Login extends AppCompatActivity {
         registerRedirect = findViewById(R.id.loginRegisterNow);
         forgotPasswordButton = findViewById(R.id.forgotPasswordButton);
 
-        // invisible button
-        easterEgg = findViewById(R.id.invisibleBtn);
+
 
         registerRedirect.setOnClickListener(v -> {
             startActivity(new Intent(Login.this, Registration.class));
@@ -60,6 +61,10 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
         });
 
+
+
+        // invisible button
+        easterEgg = findViewById(R.id.invisibleBtn);
 
         // invisible button onclick listener
         easterEgg.setOnClickListener(v -> byPass());

@@ -74,6 +74,8 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="return_to_login">Return to Login</string>
     <string name="ResetPassword">Reset Password</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="personal_information">Personal Information</string>
 
 </resources>
 

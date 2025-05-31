@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/blue"
-    tools:context=".EditProfile">
+    tools:context=".EditProfileFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:padding="12dp"
-            android:text="Edit Profile"
+            android:text="@string/edit_profile"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -50,16 +50,97 @@
                 android:padding="15dp">
 
                 <RelativeLayout
+                    android:id="@+id/second_relative_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="goToPersonalInfo">
+
+
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"/>
+                        android:id="@+id/personal_info_icon_background"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/round_back_door_service"/>
+
+                    <ImageView
+                        android:id="@+id/personal_info_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="2dp"
+                        android:padding="8dp"
+                        android:src="@drawable/personal_info_icon"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/personal_info_icon"
+                        android:text="Personal Information"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:padding="8dp"
+                        android:src="@drawable/forward_arrow_icon"/>
+
 
                 </RelativeLayout>
 
+                <!-- This is where I want my Horizontal Divider / J Separator -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    style="@style/Divider.Horizontal"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/security_badge_icon_background"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/round_back_enable_tip"/>
+
+                    <ImageView
+                        android:id="@+id/security_badge_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="2dp"
+                        android:padding="8dp"
+                        android:src="@drawable/security_badge_icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/security_badge_icon"
+                        android:text="Sign-In &amp; Security"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:padding="8dp"
+                        android:src="@drawable/forward_arrow_icon"/>
+
+                </RelativeLayout>
             </LinearLayout>
+
+
 
 
 
